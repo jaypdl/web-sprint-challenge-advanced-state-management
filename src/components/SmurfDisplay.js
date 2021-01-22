@@ -13,12 +13,16 @@ export class SmurfDisplay extends React.Component {
         
         return(
             <div>
-                {/* { (this.props.error) && <div className="alert alert-danger" role="alert">Oh Noooo.... Error: {this.props.error}</div>} */}
-                {this.props.isLoading 
+                {(this.props.error) && 
+                    <div className="alert alert-danger" role="alert">
+                        Oh Noooo.... Gargamel has captured the Smurfs!: {this.props.error}
+                    </div>}
+
+                {(this.props.isLoading || this.props.error)
                 ? <h2>Loading Smurf Village...</h2> 
                 : this.props.smurfs.map(smurf => {
-                return <Smurf smurf={smurf} key={smurf.id}/>
-                })}
+                        return <Smurf smurf={smurf} key={smurf.id}/>
+                    })}
             </div>
         )
     }
