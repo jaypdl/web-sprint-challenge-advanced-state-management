@@ -8,6 +8,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action)=>{
+  // console.log('The action receieved in reducer: ', action)
   switch (action.type) {
     case FETCH_SMURF_START:
       return({
@@ -24,24 +25,25 @@ const reducer = (state = initialState, action)=>{
     case FETCH_SMURF_FAIL:
       return({
         ...state,
-        isLoading: false,
-        loadError: action.payload
+        loadError: action.payload,
+        isLoading: false
       });
     case ADD_SMURF_START:
       return({
         ...state,
         isLoading: true,
-        addError: ''
+        addError: '',
+        loadError:''
       });
     case ADD_SMURF_SUCCESS:
-      console.log('Test from reducer ', action)
+      // console.log('Test from reducer ', action)
       return({
         ...state,
         isLoading: false,
         smurfs: action.payload
       });
     case ADD_SMURF_FAIL:
-      console.log('Error from reducer: ', action.payload)
+      // console.log('Error from reducer: ', action.payload)
       return({
         ...state,
         isLoading: false,

@@ -10,15 +10,16 @@ export class SmurfDisplay extends React.Component {
     }
 
     render() {
-        
+        if (this.props.error) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    Oh Noooo.... Gargamel has captured the Smurfs! {this.props.error}
+                </div>
+            )
+        }
         return(
             <div>
-                {(this.props.error) && 
-                    <div className="alert alert-danger" role="alert">
-                        Oh Noooo.... Gargamel has captured the Smurfs!: {this.props.error}
-                    </div>}
-
-                {(this.props.isLoading || this.props.error)
+                {this.props.isLoading
                 ? <h2>Loading Smurf Village...</h2> 
                 : this.props.smurfs.map(smurf => {
                         return <Smurf smurf={smurf} key={smurf.id}/>
@@ -32,7 +33,7 @@ const mapStateToProps = state => {
     return{
         smurfs: state.smurfs,
         isLoading: state.isLoading,
-        error: state.loaderror
+        error: state.loadError
     }
 }
 
