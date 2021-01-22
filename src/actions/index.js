@@ -1,12 +1,48 @@
 import axios from 'axios';
 
+export const FETCH_SMURF_START = 'FETCH_SMURF_START';
+export const FETCH_SMURF_SUCCESS = 'FETCH_SMURF_SUCCESS';
+export const FETCH_SMURF_FAIL = 'FETCH_SMURF_FAIL';
+export const ADD_SMURF_START = 'ADD_SMURF_START';
+export const ADD_SMURF_SUCCESS ='ADD_SMURF_SUCCESS';
+export const ADD_SMURF_FAIL = 'ADD_SMURF_SUCCESS';
+
+export const getSmurfs = () => dispatch => {
+  dispatch({ type: FETCH_SMURF_START});
+  axios
+    .get('http://localhost:3333/smurfs')
+    .then(res => {
+      dispatch({ type: FETCH_SMURF_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log('Error from Fetch Dispatch: ', err);
+      dispatch({ type:FETCH_SMURF_FAIL, payload: err});
+    })
+}
+export const addSmurf = (newSmurf) => dispatch => {
+  dispatch({ type: ADD_SMURF_START});
+    axios
+      .post('http://localhost:3333/smurfs', newSmurf)
+      .then(res => {
+        console.log('response from post success: ', res)
+        dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data});
+      })
+      .catch(err => {
+        console.log('Error from post: ', err)
+        dispatch({ type: ADD_SMURF_FAIL, payload: err})
+      })
+}
+
+
+
+
 //Task List:
 //1. Add fetch smurfs action: 
 //              - fetch and return initial list of smurfs
 //              - dispatch actions that indicate if we are waiting for a server response
 //              - dispatch an error text action if an error is returned from the server
 //2. Add add smurf action:
-//              - dispatch an error text action if smurf data does not includes a name, nickname and position field
+//!              - dispatch an error text action if smurf data does not includes a name, nickname and position field
 //              - send a post request with the smurf as body to see if there is an error
 //              - dispatch add smurf action if request is successful
 //              - dispatch an error text action if an request returns an error
