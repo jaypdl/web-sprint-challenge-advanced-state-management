@@ -36,7 +36,7 @@ handleSubmit = e =>{
                     <input onChange={this.handleChange} name="name" id="name" />
                     <label htmlFor="position">Position:</label><br/>
                     <input onChange={this.handleChange} name="position" id="position" />
-                    <label htmlFor="Nickname">Nickname:</label><br/>
+                    <label htmlFor="nickname">Nickname:</label><br/>
                     <input onChange={this.handleChange} name="nickname" id="nickname" />
                     <label htmlFor="description">Description:</label><br/>
                     <input onChange={this.handleChange} name="description" id="description" />

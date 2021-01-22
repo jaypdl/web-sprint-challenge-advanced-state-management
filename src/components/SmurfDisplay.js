@@ -10,9 +10,10 @@ export class SmurfDisplay extends React.Component {
     }
 
     render() {
+        
         return(
             <div>
-                
+                {/* { (this.props.error) && <div className="alert alert-danger" role="alert">Oh Noooo.... Error: {this.props.error}</div>} */}
                 {this.props.isLoading 
                 ? <h2>Loading Smurf Village...</h2> 
                 : this.props.smurfs.map(smurf => {
