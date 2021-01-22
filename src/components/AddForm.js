@@ -9,8 +9,7 @@ state = {
         position:'',
         nickname:'',
         description:''
-    },
-    error: this.props.error
+    }
 }
 
 handleChange = e => {
@@ -43,8 +42,8 @@ handleSubmit = e =>{
                     <input onChange={this.handleChange} name="description" id="description" />
                 </div>
 
-                { (this.state.error !== '') &&
-                <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {this.state.error}</div>
+                { (this.props.error) &&
+                <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {this.props.error}</div>
                 }
                 <button>Submit Smurf</button>
             </form>

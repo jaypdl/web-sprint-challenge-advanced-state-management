@@ -12,12 +12,12 @@ export class SmurfDisplay extends React.Component {
     render() {
         return(
             <div>
-                {this.props.isLoading && <h2>Loading Smurf Village...</h2>}
-                {
-                !this.props.isLoading && this.props.smurfs.map(smurf => {
+                
+                {this.props.isLoading 
+                ? <h2>Loading Smurf Village...</h2> 
+                : this.props.smurfs.map(smurf => {
                 return <Smurf smurf={smurf} key={smurf.id}/>
-                })
-                }
+                })}
             </div>
         )
     }
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
     return{
         smurfs: state.smurfs,
         isLoading: state.isLoading,
-        error: state.error
+        error: state.loaderror
     }
 }
 

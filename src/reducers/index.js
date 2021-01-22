@@ -1,7 +1,8 @@
 import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAIL, ADD_SMURF_START, ADD_SMURF_SUCCESS, ADD_SMURF_FAIL } from '../actions';
-export const initialState = {
+
+const initialState = {
   smurfs:[],
-  isLoading: false,
+  isLoading: true,
   loadError:'',
   addError:''
 }
@@ -33,12 +34,14 @@ const reducer = (state = initialState, action)=>{
         addError: ''
       });
     case ADD_SMURF_SUCCESS:
+      console.log('Test from reducer ', action)
       return({
         ...state,
         isLoading: false,
         smurfs: action.payload
       });
     case ADD_SMURF_FAIL:
+      console.log('Error from reducer: ', action.payload)
       return({
         ...state,
         isLoading: false,
